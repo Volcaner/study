@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "../";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 27);
+/******/ 	return __webpack_require__(__webpack_require__.s = 28);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -414,7 +414,54 @@ $export($export.S + $export.F * !__webpack_require__(0), 'Object', { definePrope
 /* 24 */,
 /* 25 */,
 /* 26 */,
-/* 27 */
+/* 27 */,
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _classCallCheck2 = __webpack_require__(7);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var LinkedList = __webpack_require__(29);
+
+var Stack = function Stack() {
+	(0, _classCallCheck3.default)(this, Stack);
+
+	return new LinkedList();
+};
+
+function StackTest() {
+	// const stack = new Stack();
+
+	// stack.push(1);
+	// stack.push(2);
+	// stack.push(3);
+
+	// console.log(stack.pop());
+	// console.log(stack.pop());
+	// console.log(stack.pop());
+
+
+	var str = '{{{{{{{{{{}}}}}}}}}}';
+	var stack = new Stack();
+	for (var i = 0; i < str.length; i++) {
+		var c = str[i];
+		if (c === '{') stack.push(i);
+		if (c === '}') stack.pop();
+	}
+
+	console.log(stack.toString());
+}
+
+StackTest();
+
+/***/ }),
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -447,7 +494,7 @@ var LinkedList = function () {
 	}
 
 	(0, _createClass3.default)(LinkedList, [{
-		key: "insert",
+		key: 'insert',
 		value: function insert(value, after) {
 			var nodeToInsert = new Node(value);
 			if (!this.head) {
@@ -466,7 +513,7 @@ var LinkedList = function () {
 			} else this.tail = nodeToInsert;
 		}
 	}, {
-		key: "push",
+		key: 'push',
 		value: function push(value) {
 			var nodeToInsert = new Node(value, null);
 			if (!this.tail) {
@@ -479,28 +526,32 @@ var LinkedList = function () {
 			}
 		}
 	}, {
-		key: "pop",
+		key: 'pop',
 		value: function pop() {
 			if (!this.tail) return null;
 			var originalTail = this.tail;
 			this.tail = originalTail.prev;
-			originalTail.prev.next = null;
+			if (originalTail.prev) {
+				originalTail.prev.next = null;
+			} else {
+				this.head = null;
+			}
 			return originalTail.value;
 		}
 	}, {
-		key: "remove",
+		key: 'remove',
 		value: function remove(after) {
 			var prevNode = this._findNode(after);
 			if (!prevNode) return;
 			if (prevNode.next) {
 				var nextNode = prevNode.next.next;
-				if (!nextNode) this.tail = prevNode;return;
+				if (!nextNode) this.tail = prevNode;
 				prevNode.next.next = null;
 				prevNode.next = nextNode;
 			}
 		}
 	}, {
-		key: "_findNode",
+		key: '_findNode',
 		value: function _findNode(value) {
 			if (!this.head) return null;
 			if (this.head.value === value) return this.head;
@@ -511,43 +562,23 @@ var LinkedList = function () {
 			}
 			return null;
 		}
+	}, {
+		key: 'toString',
+		value: function toString() {
+			if (!this.head) return '';
+			var cur = this.head;
+			var str = cur.value.toString();
+			while (cur.next) {
+				cur = cur.next;
+				str += cur.value.toString();
+			}
+			return str;
+		}
 	}]);
 	return LinkedList;
 }();
 
-function linkedListTests() {
-	var startTime = 0,
-	    endTime = 0;
-
-	// Array
-	var arr = new Array(1000000);
-	for (var i = 0; i < 1000000; i++) {
-		arr[i] = i;
-	}
-
-	startTime = new Date().getTime();
-
-	for (var i = 0; i < 10; i++) {
-		arr.shift();
-	}
-
-	endTime = new Date().getTime();
-	console.log(endTime - startTime);
-
-	// linkedList
-	var linkedList = new linkedList();
-
-	startTime = new Date().getTime();
-
-	for (var i = 0; i < 100; i++) {
-		arr.shift();
-	}
-
-	endTime = new Date().getTime();
-	console.log(endTime - startTime);
-}
-
-linkedListTests();
+module.exports = LinkedList;
 
 /***/ })
 /******/ ]);

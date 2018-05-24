@@ -48,7 +48,12 @@ class LinkedList {
 		if(!this.tail) return null;
 		const originalTail = this.tail;
 		this.tail = originalTail.prev;
-		originalTail.prev.next = null;
+		if(originalTail.prev) {
+			originalTail.prev.next = null;
+		}
+		else {
+			this.head = null;
+		}
 		return originalTail.value;
 	}
 
@@ -57,7 +62,7 @@ class LinkedList {
 		if(!prevNode) return;
 		if(prevNode.next) {
 			const nextNode = prevNode.next.next;
-			if(!nextNode) this.tail = prevNode; return;
+			if(!nextNode) this.tail = prevNode;
 			prevNode.next.next = null;
 			prevNode.next = nextNode;
 		}
@@ -73,42 +78,17 @@ class LinkedList {
 		}
 		return null;
 	}
+
+	toString() {
+		if(!this.head) return '';
+		let cur = this.head;
+		let str = cur.value.toString();
+		while(cur.next) {
+			cur = cur.next;
+			str += cur.value.toString();
+		}
+		return str;
+	}
 }
 
-function linkedListTests() {
-	let startTime = 0, endTime = 0;
-
-
-	// Array
-	const arr = new Array(1000000);
-	for (var i = 0; i < 1000000; i++) {
-		arr[i] = i;
-	}
-
-	startTime = new Date().getTime();
-
-	for (var i = 0; i < 10; i++) {
-		arr.shift();
-	}
-
-	endTime = new Date().getTime();
-	console.log(endTime - startTime);
-
-
-
-
-	// linkedList
-	const linkedList = new linkedList();
-
-
-	startTime = new Date().getTime();
-
-	for (var i = 0; i < 100; i++) {
-		arr.shift();
-	}
-
-	endTime = new Date().getTime();
-	console.log(endTime - startTime);
-}
-
-linkedListTests();
+module.exports = LinkedList;

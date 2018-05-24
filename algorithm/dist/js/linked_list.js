@@ -71,7 +71,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 // Thank's IE8 for his funny defineProperty
-module.exports = !__webpack_require__(4)(function () {
+module.exports = !__webpack_require__(3)(function () {
   return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
 });
 
@@ -86,8 +86,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 2 */,
-/* 3 */
+/* 2 */
 /***/ (function(module, exports) {
 
 var core = module.exports = { version: '2.5.6' };
@@ -95,7 +94,7 @@ if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports) {
 
 module.exports = function (exec) {
@@ -108,7 +107,7 @@ module.exports = function (exec) {
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -120,12 +119,12 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(13);
-var IE8_DOM_DEFINE = __webpack_require__(19);
-var toPrimitive = __webpack_require__(21);
+var anObject = __webpack_require__(11);
+var IE8_DOM_DEFINE = __webpack_require__(17);
+var toPrimitive = __webpack_require__(19);
 var dP = Object.defineProperty;
 
 exports.f = __webpack_require__(0) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
@@ -142,7 +141,7 @@ exports.f = __webpack_require__(0) ? Object.defineProperty : function defineProp
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -157,7 +156,7 @@ exports.default = function (instance, Constructor) {
 };
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -165,7 +164,7 @@ exports.default = function (instance, Constructor) {
 
 exports.__esModule = true;
 
-var _defineProperty = __webpack_require__(10);
+var _defineProperty = __webpack_require__(8);
 
 var _defineProperty2 = _interopRequireDefault(_defineProperty);
 
@@ -190,25 +189,24 @@ exports.default = function () {
 }();
 
 /***/ }),
-/* 9 */,
-/* 10 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(11), __esModule: true };
+module.exports = { "default": __webpack_require__(9), __esModule: true };
 
 /***/ }),
-/* 11 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(22);
-var $Object = __webpack_require__(3).Object;
+__webpack_require__(20);
+var $Object = __webpack_require__(2).Object;
 module.exports = function defineProperty(it, key, desc) {
   return $Object.defineProperty(it, key, desc);
 };
 
 
 /***/ }),
-/* 12 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = function (it) {
@@ -218,7 +216,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 13 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(1);
@@ -229,11 +227,11 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 14 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
-var aFunction = __webpack_require__(12);
+var aFunction = __webpack_require__(10);
 module.exports = function (fn, that, length) {
   aFunction(fn);
   if (that === undefined) return fn;
@@ -255,11 +253,11 @@ module.exports = function (fn, that, length) {
 
 
 /***/ }),
-/* 15 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(1);
-var document = __webpack_require__(5).document;
+var document = __webpack_require__(4).document;
 // typeof document.createElement is 'object' in old IE
 var is = isObject(document) && isObject(document.createElement);
 module.exports = function (it) {
@@ -268,14 +266,14 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 16 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(5);
-var core = __webpack_require__(3);
-var ctx = __webpack_require__(14);
-var hide = __webpack_require__(18);
-var has = __webpack_require__(17);
+var global = __webpack_require__(4);
+var core = __webpack_require__(2);
+var ctx = __webpack_require__(12);
+var hide = __webpack_require__(16);
+var has = __webpack_require__(15);
 var PROTOTYPE = 'prototype';
 
 var $export = function (type, name, source) {
@@ -336,7 +334,7 @@ module.exports = $export;
 
 
 /***/ }),
-/* 17 */
+/* 15 */
 /***/ (function(module, exports) {
 
 var hasOwnProperty = {}.hasOwnProperty;
@@ -346,11 +344,11 @@ module.exports = function (it, key) {
 
 
 /***/ }),
-/* 18 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var dP = __webpack_require__(6);
-var createDesc = __webpack_require__(20);
+var dP = __webpack_require__(5);
+var createDesc = __webpack_require__(18);
 module.exports = __webpack_require__(0) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
 } : function (object, key, value) {
@@ -360,16 +358,16 @@ module.exports = __webpack_require__(0) ? function (object, key, value) {
 
 
 /***/ }),
-/* 19 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = !__webpack_require__(0) && !__webpack_require__(4)(function () {
-  return Object.defineProperty(__webpack_require__(15)('div'), 'a', { get: function () { return 7; } }).a != 7;
+module.exports = !__webpack_require__(0) && !__webpack_require__(3)(function () {
+  return Object.defineProperty(__webpack_require__(13)('div'), 'a', { get: function () { return 7; } }).a != 7;
 });
 
 
 /***/ }),
-/* 20 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = function (bitmap, value) {
@@ -383,7 +381,7 @@ module.exports = function (bitmap, value) {
 
 
 /***/ }),
-/* 21 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
@@ -401,15 +399,17 @@ module.exports = function (it, S) {
 
 
 /***/ }),
-/* 22 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var $export = __webpack_require__(16);
+var $export = __webpack_require__(14);
 // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-$export($export.S + $export.F * !__webpack_require__(0), 'Object', { defineProperty: __webpack_require__(6).f });
+$export($export.S + $export.F * !__webpack_require__(0), 'Object', { defineProperty: __webpack_require__(5).f });
 
 
 /***/ }),
+/* 21 */,
+/* 22 */,
 /* 23 */,
 /* 24 */,
 /* 25 */,
@@ -420,11 +420,11 @@ $export($export.S + $export.F * !__webpack_require__(0), 'Object', { definePrope
 "use strict";
 
 
-var _createClass2 = __webpack_require__(8);
+var _createClass2 = __webpack_require__(7);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _classCallCheck2 = __webpack_require__(7);
+var _classCallCheck2 = __webpack_require__(6);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
@@ -484,7 +484,7 @@ var LinkedList = function () {
 			if (!this.tail) return null;
 			var originalTail = this.tail;
 			this.tail = originalTail.prev;
-			originalTail.prev.next = null;
+			if (originalTail.prev) originalTail.prev.next = null;
 			return originalTail.value;
 		}
 	}, {
@@ -494,7 +494,7 @@ var LinkedList = function () {
 			if (!prevNode) return;
 			if (prevNode.next) {
 				var nextNode = prevNode.next.next;
-				if (!nextNode) this.tail = prevNode;return;
+				if (!nextNode) this.tail = prevNode;
 				prevNode.next.next = null;
 				prevNode.next = nextNode;
 			}
@@ -515,39 +515,7 @@ var LinkedList = function () {
 	return LinkedList;
 }();
 
-function linkedListTests() {
-	var startTime = 0,
-	    endTime = 0;
-
-	// Array
-	var arr = new Array(1000000);
-	for (var i = 0; i < 1000000; i++) {
-		arr[i] = i;
-	}
-
-	startTime = new Date().getTime();
-
-	for (var i = 0; i < 10; i++) {
-		arr.shift();
-	}
-
-	endTime = new Date().getTime();
-	console.log(endTime - startTime);
-
-	// linkedList
-	var linkedList = new linkedList();
-
-	startTime = new Date().getTime();
-
-	for (var i = 0; i < 100; i++) {
-		arr.shift();
-	}
-
-	endTime = new Date().getTime();
-	console.log(endTime - startTime);
-}
-
-linkedListTests();
+module.exports = { LinkedList: LinkedList };
 
 /***/ })
 /******/ ]);

@@ -13,10 +13,14 @@ const config = {
 	output: {
 		filename: 'js/[name].js',
 		path: __dirname + '/dist',
-		publicPath: '',
+		publicPath: '../',
 	},
 	module: {
 		rules: [
+			{
+				test: require.resolve('jquery'),
+				loader: 'expose-loader?jQuery!expose-loader?$'
+			},
 			{
 				test: /\.html$/,
 				exclude: /node_modules/,
@@ -32,7 +36,7 @@ const config = {
 					query: {
 						plugins: ['transform-runtime'],
 						presets: ['es2015', 'stage-0']
-					}
+					},
 				}
 			},
 		],
@@ -42,7 +46,10 @@ const config = {
 		// hotmodulereplace,
 	],
 	devServer: {},
-	externals: {},
+	externals: {
+		// $: 'jquery',
+		//    jQuery: 'jquery',
+	},
 };
 
 config.entry = getEntry();
