@@ -74,6 +74,9 @@
 "use strict";
 
 
+var start = 0,
+    end = 0;
+
 // 插入排序法
 var insertionSort = function insertionSort(arr) {
 	var len = arr.length;
@@ -139,6 +142,92 @@ var selectionSort = function selectionSort(arr) {
 // console.log(arr);
 // selectionSort(arr);
 // console.log(arr);
+
+
+// 希尔排序（高级排序算法）
+var hardCodingIntervalShellSort = function hardCodingIntervalShellSort(arr, gaps) {
+	// 硬编码间隔
+	var len = arr.length;
+	for (var i = 0; i < gaps.length; i++) {
+		for (var j = gaps[i]; j < len; j++) {
+			var temp = arr[j];
+			var k = j;
+			while (k > 0 && arr[k - gaps[i]] >= temp) {
+				arr[k] = arr[k - gaps[i]];
+				k -= gaps[i];
+			}
+			arr[k] = temp;
+		}
+	}
+
+	return arr;
+};
+
+var dynamicCalculationIntervalShellSort = function dynamicCalculationIntervalShellSort(arr) {
+	// 动态计算间隔
+	var len = arr.length;
+	var h = 1;
+	while (h < len / 3) {
+		h = 3 * h + 1;
+	}
+	while (h >= 1) {
+		for (var i = h; i < len; i++) {
+			var temp = arr[i];
+			var j = i;
+			while (j > 0 && arr[j - h] >= temp) {
+				arr[j] = arr[j - h];
+				j -= h;
+			}
+			arr[j] = temp;
+		}
+
+		h = (h - 1) / 3;
+	}
+
+	return arr;
+};
+
+// var arr1 = [659, 2, 4, 65, 231, 4, 63, 8, 34, 98, 54, 345, 89, 75, 24, -1, 0];
+// for(var a = 0; a < 100000; a++) {
+// 	arr1.push(Math.random()*1000);
+// }
+// var gaps = [701, 301, 132, 57, 23, 10, 4, 1];
+// start = new Date().getTime();
+
+// hardCodingIntervalShellSort(arr1, gaps);
+// // console.log(arr1);
+
+// end = new Date().getTime();
+// console.log(arr1);
+// console.log("硬编码间隔希尔排序耗时：" + (end - start));
+
+
+// var arr2 = [659, 2, 4, 65, 231, 4, 63, 8, 34, 98, 54, 345, 89, 75, 24, -1, 0];
+// for(var a = 0; a < 100000; a++) {
+// 	arr2.push(Math.random()*1000);
+// }
+// start = new Date().getTime();
+
+// insertionSort(arr2);
+// // console.log(arr2);
+
+// end = new Date().getTime();
+// console.log(arr2);
+// console.log("插入排序耗时：" + (end - start));
+
+
+// var arr3 = [659, 2, 4, 65, 231, 4, 63, 8, 34, 98, 54, 345, 89, 75, 24, -1, 0];
+// for(var a = 0; a < 100000; a++) {
+// 	arr3.push(Math.random()*1000);
+// }
+// start = new Date().getTime();
+
+// dynamicCalculationIntervalShellSort(arr3);
+// // console.log(arr2);
+
+// end = new Date().getTime();
+// console.log(arr3);
+// console.log("动态计算间隔希尔排序耗时：" + (end - start));
 
 /***/ })
 
