@@ -63,12 +63,21 @@
 /******/ 	__webpack_require__.p = "../";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 94);
+/******/ 	return __webpack_require__(__webpack_require__.s = 100);
 /******/ })
 /************************************************************************/
 /******/ ({
 
 /***/ 0:
+/***/ (function(module, exports) {
+
+var core = module.exports = { version: '2.5.6' };
+if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
+
+
+/***/ }),
+
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Thank's IE8 for his funny defineProperty
@@ -79,24 +88,66 @@ module.exports = !__webpack_require__(5)(function () {
 
 /***/ }),
 
-/***/ 1:
-/***/ (function(module, exports) {
-
-var core = module.exports = { version: '2.5.6' };
-if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
-
-
-/***/ }),
-
 /***/ 10:
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(3);
-module.exports = function (it) {
-  if (!isObject(it)) throw TypeError(it + ' is not an object!');
-  return it;
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
 };
 
+/***/ }),
+
+/***/ 100:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _classCallCheck2 = __webpack_require__(10);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var LinkedList = __webpack_require__(23);
+
+var Stack = function Stack() {
+	(0, _classCallCheck3.default)(this, Stack);
+
+	return new LinkedList();
+};
+
+function StackTest() {
+	// const stack = new Stack();
+
+	// stack.push(1);
+	// stack.push(2);
+	// stack.push(3);
+
+	// console.log(stack.pop());
+	// console.log(stack.pop());
+	// console.log(stack.pop());
+
+
+	var str = '{{{{{{{{{{}}}}}}}}}}';
+	var stack = new Stack();
+	for (var i = 0; i < str.length; i++) {
+		var c = str[i];
+		if (c === '{') stack.push(i);
+		if (c === '}') stack.pop();
+	}
+
+	console.log(stack.toString());
+}
+
+StackTest();
 
 /***/ }),
 
@@ -115,7 +166,7 @@ module.exports = function (bitmap, value) {
 
 /***/ }),
 
-/***/ 12:
+/***/ 13:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -149,7 +200,7 @@ exports.default = function () {
 
 /***/ }),
 
-/***/ 13:
+/***/ 14:
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
@@ -168,7 +219,7 @@ module.exports = function (it, S) {
 
 /***/ }),
 
-/***/ 14:
+/***/ 15:
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
@@ -195,7 +246,7 @@ module.exports = function (fn, that, length) {
 
 /***/ }),
 
-/***/ 15:
+/***/ 16:
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(3);
@@ -209,11 +260,11 @@ module.exports = function (it) {
 
 /***/ }),
 
-/***/ 16:
+/***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = !__webpack_require__(0) && !__webpack_require__(5)(function () {
-  return Object.defineProperty(__webpack_require__(15)('div'), 'a', { get: function () { return 7; } }).a != 7;
+module.exports = !__webpack_require__(1) && !__webpack_require__(5)(function () {
+  return Object.defineProperty(__webpack_require__(16)('div'), 'a', { get: function () { return 7; } }).a != 7;
 });
 
 
@@ -243,7 +294,7 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(22);
-var $Object = __webpack_require__(1).Object;
+var $Object = __webpack_require__(0).Object;
 module.exports = function defineProperty(it, key, desc) {
   return $Object.defineProperty(it, key, desc);
 };
@@ -265,9 +316,9 @@ module.exports = function (it) {
 /***/ 22:
 /***/ (function(module, exports, __webpack_require__) {
 
-var $export = __webpack_require__(7);
+var $export = __webpack_require__(8);
 // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-$export($export.S + $export.F * !__webpack_require__(0), 'Object', { defineProperty: __webpack_require__(4).f });
+$export($export.S + $export.F * !__webpack_require__(1), 'Object', { defineProperty: __webpack_require__(4).f });
 
 
 /***/ }),
@@ -278,11 +329,11 @@ $export($export.S + $export.F * !__webpack_require__(0), 'Object', { definePrope
 "use strict";
 
 
-var _createClass2 = __webpack_require__(12);
+var _createClass2 = __webpack_require__(13);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _classCallCheck2 = __webpack_require__(9);
+var _classCallCheck2 = __webpack_require__(10);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
@@ -406,12 +457,12 @@ module.exports = function (it) {
 /***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(10);
-var IE8_DOM_DEFINE = __webpack_require__(16);
-var toPrimitive = __webpack_require__(13);
+var anObject = __webpack_require__(7);
+var IE8_DOM_DEFINE = __webpack_require__(17);
+var toPrimitive = __webpack_require__(14);
 var dP = Object.defineProperty;
 
-exports.f = __webpack_require__(0) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+exports.f = __webpack_require__(1) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
   anObject(O);
   P = toPrimitive(P, true);
   anObject(Attributes);
@@ -454,10 +505,22 @@ module.exports = function (it, key) {
 /***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
+var isObject = __webpack_require__(3);
+module.exports = function (it) {
+  if (!isObject(it)) throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+
+/***/ }),
+
+/***/ 8:
+/***/ (function(module, exports, __webpack_require__) {
+
 var global = __webpack_require__(2);
-var core = __webpack_require__(1);
-var ctx = __webpack_require__(14);
-var hide = __webpack_require__(8);
+var core = __webpack_require__(0);
+var ctx = __webpack_require__(15);
+var hide = __webpack_require__(9);
 var has = __webpack_require__(6);
 var PROTOTYPE = 'prototype';
 
@@ -520,81 +583,18 @@ module.exports = $export;
 
 /***/ }),
 
-/***/ 8:
+/***/ 9:
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(4);
 var createDesc = __webpack_require__(11);
-module.exports = __webpack_require__(0) ? function (object, key, value) {
+module.exports = __webpack_require__(1) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
 } : function (object, key, value) {
   object[key] = value;
   return object;
 };
 
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-
-/***/ }),
-
-/***/ 94:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var LinkedList = __webpack_require__(23);
-
-var Stack = function Stack() {
-	(0, _classCallCheck3.default)(this, Stack);
-
-	return new LinkedList();
-};
-
-function StackTest() {
-	// const stack = new Stack();
-
-	// stack.push(1);
-	// stack.push(2);
-	// stack.push(3);
-
-	// console.log(stack.pop());
-	// console.log(stack.pop());
-	// console.log(stack.pop());
-
-
-	var str = '{{{{{{{{{{}}}}}}}}}}';
-	var stack = new Stack();
-	for (var i = 0; i < str.length; i++) {
-		var c = str[i];
-		if (c === '{') stack.push(i);
-		if (c === '}') stack.pop();
-	}
-
-	console.log(stack.toString());
-}
-
-StackTest();
 
 /***/ })
 
