@@ -217,7 +217,7 @@ var dynamicCalculationIntervalShellSort = function dynamicCalculationIntervalShe
 
 
 // var arr3 = [659, 2, 4, 65, 231, 4, 63, 8, 34, 98, 54, 345, 89, 75, 24, -1, 0];
-// for(var a = 0; a < 100000; a++) {
+// for(var a = 0; a < 10000; a++) {
 // 	arr3.push(Math.random()*1000);
 // }
 // start = new Date().getTime();
@@ -247,10 +247,14 @@ var mergeSort = function mergeSort(arr) {
 			mergeArrays(arr, left, left + step, right, right + step);
 			left = right + step;
 			right = left + step;
+
+			// console.log(arr);
 		}
 
 		if (right < arr.length) {
 			mergeArrays(arr, left, left + step, right, arr.length);
+
+			// console.log(arr);
 		}
 		step *= 2;
 	}
@@ -277,7 +281,7 @@ var mergeArrays = function mergeArrays(arr, startLeft, stopLeft, startRight, sto
 	var n = 0;
 	for (var j = startLeft; j < stopRight; j++) {
 		if (leftArr[m] <= rightArr[n]) {
-			arr[j] == leftArr[m];
+			arr[j] = leftArr[m];
 			m++;
 		} else {
 			arr[j] = rightArr[n];
@@ -285,6 +289,19 @@ var mergeArrays = function mergeArrays(arr, startLeft, stopLeft, startRight, sto
 		}
 	}
 };
+
+// var nums = [659, 2, 4, 65, 231, 4, 63, 8, 34, 98, 54, 345, 89, 75, 24, -1, 0];
+// for(var a = 0; a < 1000000; a++) {
+// 	nums.push(Math.random()*1000);
+// }
+
+// start = new Date().getTime();
+
+// mergeSort(nums);
+
+// end = new Date().getTime();
+// console.log("自底向上的归并排序：" + (end - start));
+// console.log(nums);
 
 /***/ })
 
