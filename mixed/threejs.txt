@@ -1,0 +1,4 @@
+Threejs基础教程: http://www.hewebgl.com/article/articledir/1
+				https://teakki.com/p/58a3ef1bf0d40775548c908f
+				https://threejs.org/docs/index.html#api/objects/Sprite
+				https://github.com/Volcaner/three.js

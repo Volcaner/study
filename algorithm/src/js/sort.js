@@ -154,7 +154,62 @@ var dynamicCalculationIntervalShellSort = function(arr) {  // 动态计算间隔
 // console.log("动态计算间隔希尔排序耗时：" + (end - start));
 
 
+// 自底向上的归并排序
+var mergeSort = function(arr) {
+	var len = arr.length;
+	if(len < 2) {
+		return arr;
+	}
 
+	var step = 1;
+	var left, right;
+	while(step < len) {
+		left = 0;
+		right = step;
+
+		while(right + step <= len) {
+			mergeArrays(arr, left, left+step, right, right+step);
+			left = right + step;
+			right = left + step;
+		}
+
+		if(right < arr.length) {
+			mergeArrays(arr, left, left+step, right, arr.length);
+		}
+		step *= 2;
+	}
+};
+var mergeArrays = function(arr, startLeft, stopLeft, startRight, stopRight) {
+	var rightArr = new Array(stopRight - startRight + 1);
+	var leftArr = new Array(stopLeft - startLeft + 1);
+	var k = startRight;
+	for(var i = 0; i < (rightArr.length - 1); i++) {
+		rightArr[i] = arr[k];
+		k++;
+	}
+
+	var q = startLeft;
+	for(var i = 0; i < (leftArr.length - 1); i++) {
+		leftArr[i] = arr[q];
+		q++;
+	}
+
+	rightArr[rightArr.length - 1] = Infinity;  // 哨兵值
+	leftArr[leftArr.length - 1] = Infinity;  // 哨兵值
+
+	var m = 0;
+	var n = 0;
+	for(var j = startLeft; j < stopRight; j++) {
+		if(leftArr[m] <= rightArr[n]) {
+			arr[j] == leftArr[m];
+			m++;
+		}
+		else {
+			arr[j] = rightArr[n];
+			n++;
+		}
+	}
+};
 
 
 

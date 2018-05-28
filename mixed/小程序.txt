@@ -1,0 +1,51 @@
+1. 账户密码
+m15372016272@163.com
+*130KcZ.
+
+2. https 免费证书
+https://yq.aliyun.com/articles/225669?spm=5176.10695662.1996646101.searchclickresult.3ec77d54Q4Zdu0
+
+https://freessl.org/dashboard
+zh：kaican93@163.com
+mm：*130KcZ.
+
+3. 网易邮箱
+m15372016272@163.com
+*130KcZ.
+
+4. 微信开放平台
+995362937@qq.com
+yichao123456
+
+
+5. 微信公众平台
+kaican93@163.com
+*130KcZ.
+		--公众号
+
+2956718258@qq.com
+@130KcZ^
+AppID(小程序ID) wx08cc774e9604360f
+AppSecret(小程序密钥) e911b791b964b13a28a580e0b797307e
+		--小程序
+		
+m15372016272@163.com
+*130KcZ.
+AppID(小程序ID) wx0314ebb9d0b839aa
+AppSecret(小程序密钥) bd5df63acf7a786639e6789ebe655c87
+		--小程序
+	
+蚁巢社区小程序	
+AppID: wx74475d49e049c12a
+AppSecret: 2b121383024a45ff5ed0714d8eaf8d7c
+		--第三方平台
+
+		
+6. 谷歌
+volcanernew@gmail.com
+kaican93@163.com
+*130KcZ.
+
+7. sourcetree
+volcanernew@gmail.com
+

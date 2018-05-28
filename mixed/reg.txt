@@ -1,0 +1,55 @@
+1. 匹配内容，并在末尾添加新信息后替换原内容
+var str = "<img src='aaa'><img src='bbb'>";
+var reg = /<img ([^>]+)>/g;
+str = str.replace(reg, function(e) {
+	return e + "</img>";
+});
+
+2. 判断：16进制颜色  和  图片后缀
+var bgColorReg = /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/;
+var bgImgReg = /.+(.JPEG|.jpeg|.JPG|.jpg|.GIF|.gif|.BMP|.bmp|.PNG|.png)$/;
+
+3.对文本框内容校验，小数点前面最多16位数字，小数点后面最多4位数字（可以没有小数点，即 ？）
+var regex = /^0$|^[1-9]\d{0,15}$|^[1-9]\d{0,15}\.{1}\d{1,4}$|^0\.{1}\d{1,4}$/g;
+
+4.校验整数输入
+var _inputIntLimit = function(e) {
+	var el = e.currentTarget;
+	var value = $(el).val();
+	// var judgeReg = /^\\d+$/;
+	var clearReg = /[^0-9]/ig;
+	value = value.replace(clearReg, "");
+	if(!_isNorU(value) && parseInt(value) > 0) {
+		$(el).val(parseInt(value));
+	}
+	else {
+		$(el).val("");
+	}
+};
+
+5.校验折扣输入
+var _inputDiscountLimit = function(e) {
+	var el = e.currentTarget;
+	var value = $(el).val();
+	var clearReg = /[^\d.]/g;  // 清除"数字"和"."以外的字符
+	var firstNumReg = /^\./g;  // 验证第一个字符是数字而不是
+	var noSecondPointReg = /\.{2,}/g;  // 只保留第一个. 清除多余的
+	var pointReg = /\.{1}/g;
+	value = value.replace(clearReg, "").replace(firstNumReg, "").replace(noSecondPointReg, "");
+	if(!_isNorU(value) && parseFloat(value) >= 0) {
+		if(parseFloat(value) >= 10) {
+			$(el).val(9.9);
+		}
+		else {
+			if(pointReg.test(parseFloat(value))) {
+				$(el).val(parseFloat(value).toFixed(1));
+			}
+			else {
+				$(el).val(parseFloat(value));
+			}
+		}
+	}
+	else {
+		$(el).val("");
+	}
+};

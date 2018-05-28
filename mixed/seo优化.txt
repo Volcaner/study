@@ -1,0 +1,9 @@
+<meta name="Keywords" content="简洁浅灰色css网站模板 模板下载">
+<meta name="description" content="简洁浅灰色css网站模板，一款经过优化，对搜索引擎非常友好的网站模板。">
+
+
+Baiduspider：
+	百度通过一个叫做Baiduspider的程序抓取互联网上的网页，经过处理后建入索引中。目前Baiduspider只能读懂文本内容，flash、图片等非文本内容暂时不能处理，放置在flash、图片中的文字，百度无法识别。
+	
+	
+	域名下 创建 root 文件夹，作为域名下的根目录

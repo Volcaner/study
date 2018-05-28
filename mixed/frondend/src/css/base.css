@@ -1,0 +1,25 @@
+@charset "utf-8";
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}
+.Clear,.ClearBoth{display:block;clear:both;height:0;overflow:hidden;}
+body{font-family:"Microsoft YaHei";overflow:auto;min-width:1100px;}
+#top{font-family:"Microsoft YaHei"!important;}
+img{ border:0;}
+u,b,i{font-style: normal;}
+li{list-style:none}
+a{text-decoration:none;}
+input,button,select,textarea{outline:none}
+/* .right{float:left;margin-left:10px;width:1000px;} */
+.right{float:left;margin:0 0 0 10px;width:1000px;/* background:#ffffff; */}
+.auto_main{
+	overflow:hidden;
+	width:1200px;
+	margin:0 auto 10px auto;
+}
+a:focus{outline:0}
+.auto_main{
+	overflow:hidden;
+	width:1200px;
+	margin:0 auto 10px auto;
+
+}
+.rightMain{float:left;margin:10px 0 0 10px;width:1000px;padding:10px 0;background:#ffffff;}

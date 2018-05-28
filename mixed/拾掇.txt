@@ -1,0 +1,8 @@
+﻿1. window ip 配置
+ipconfig
+
+2. 免费https
+https://freessl.org
+
+3. 免费ppt
+http://www.ypppt.com/

@@ -1,0 +1,27 @@
+﻿1. 生成私钥
+	cd ~/.ssh
+	$ ssh-keygen -t rsa -C "自己的电脑名"
+	$ ssh -T git@github.com
+	
+2. 建联远程仓库
+git remote add origin git@your_gitServer_ip:/home/gitrepo/sample.git
+
+3. 克隆
+git clone git@your_gitServer_ip:/home/gitrepo/sample.git
+
+4. 基本操作
+git add .
+git commit -m "aaa"
+git push -u origin master
+
+5. git教程
+https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000
+
+6. project 添加 member 需要把他的私钥添加进来
+
+7. gitlab
+zz: kaican
+mm: *130KcZ.
+
+8. hosts
+C:\Windows\System32\drivers\etc\hosts

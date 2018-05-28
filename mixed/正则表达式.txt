@@ -1,0 +1,110 @@
+1. 查找 img 标签， 并在末尾加 / 
+	var reg = /<img[^>]*>/gi;
+	var data = '<svg xmlns="http://www.w3.org/2000/svg" width="320" height="544">' +
+	           '<foreignObject width="100%" height="100%">' + 
+	           '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:16px;font-family:Helvetica">' + 
+	           phoneDiv[0].outerHTML + 
+	           '</div>' +
+	           '</foreignObject>' +
+	           '</svg>';
+	data = data.replace(reg, function(match, capture) {
+		return match.split(">").join(" />");
+	});
+	
+2. 只能允许输入数字
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>JS 控制只能输入数字并且最多允许两位小数点</title>  
+</head>  
+<body>    
+<input type="text" name="je" onkeyup="clearNoNum(this)" />元  
+<script language="JavaScript" type="text/javascript">      
+    function clearNoNum(obj){  
+        //修复第一个字符是小数点 的情况.  
+        if(obj.value !=''&& obj.value.substr(0,1) == '.'){  
+            obj.value="";  
+        }  
+        obj.value = obj.value.replace(/^0*(0\.|[1-9])/, '$1');//解决 粘贴不生效  
+        obj.value = obj.value.replace(/[^\d.]/g,"");  //清除“数字”和“.”以外的字符  
+        obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个. 清除多余的       
+        obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");      
+        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');//只能输入两个小数       
+        if(obj.value.indexOf(".")< 0 && obj.value !=""){//以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额  
+            if(obj.value.substr(0,1) == '0' && obj.value.length == 2){  
+                obj.value= obj.value.substr(1,obj.value.length);      
+            }  
+        }      
+    }      
+</script>    
+</body>  
+</html>  
+
+3.JS 控制不能输入特殊字符
+<input type="text"class="domain"onkeyup="this.value=this.value.replace(/[^u4e00-u9fa5w]/g,'')"；
+this.value=this.value.replace(/[^u4e00-u9fa5w]/g,'')；
+
+4.JS 控制文本框只能输入数字
+<input onkeyup="value=value.replace(/[^0-9]/g,'')" onpaste="value=value.replace(/[^0-9]/g,'')" oncontextmenu = "value=value.replace(/[^0-9]/g,'')">
+
+5.JS 控制文本框只能输入数字、小数点
+<input onkeyup="value=value.replace(/[^\0-9\.]/g,'')" onpaste="value=value.replace(/[^\0-9\.]/g,'')" oncontextmenu = "value=value.replace(/[^\0-9\.]/g,'')">
+
+6.JS 控制文本框只能输入英文
+<input onkeyup="value=value.replace(/[^\a-\z\A-\Z]/g,'')" onpaste="value=value.replace(/[^\a-\z\A-\Z]/g,'')" oncontextmenu = "value=value.replace(/[^\a-\z\A-\Z]/g,'')">
+
+7.JS 控制文本框只能输入英文、数字
+<input onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" onpaste="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" oncontextmenu = "value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')">
+
+8.JS 控制文本框只能输入中文
+<input onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onpaste="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" oncontextmenu = "value=value.replace(/[^\u4E00-\u9FA5]/g,'')">
+
+9.JS 控制文本框只能输入中文、英文、数字
+<input onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g,'')" onpaste="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g,'')" oncontextmenu = "value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g,'')">
+
+10.JS 控制文本框只能输入中文、英文、数字、空格
+<input onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5\ ]/g,'')" onpaste="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5\ ]/g,'')" oncontextmenu = "value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5\ ]/g,'')">
+
+11.JS 控制文本框只能输入中文、英文、数字、小数点
+<input onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5\.]/g,'')" onpaste="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5\.]/g,'')" oncontextmenu = "value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5\.]/g,'')">
+
+12.验证输入框内不能输入特殊字符,输入就立刻清除
+function cleanSpelChar(th){   
+  if(/["'<>%;)(&+]/.test(th.value)){      
+  $(th).val(th.value.replace(/["'<>%;)(&+]/,""));   
+  } 
+}
+
+13.验证输入框内不能输入特殊字符，输入前先作判断 
+function processSpelChar(){   
+	var code;   var character;  
+	 if(document.all){     
+	  code = window.event.keyCode;   
+	}else{     
+	  code = arguments.callee.caller.arguments[0].which;  
+	 }   
+	var character = String.fromCharCode(code);   
+	var txt = new RegExp(/["'<>%;)(&+]/);  
+	 if(txt.test(character)){     
+		if(document.all){       
+		window.event.returnValue = false;    
+	   }else{      
+		 arguments.callee.caller.arguments[0].preventDefault();    
+	 }   
+	} 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

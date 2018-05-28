@@ -1,0 +1,4 @@
+192.168.0.234
+root
+NGS2012
+/usr/local/jetty/webapps/yich/wap

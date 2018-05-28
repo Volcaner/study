@@ -1,0 +1,113 @@
+@import './base.css';
+@import './public.less';
+@import './iconfont.css';
+
+body {background: @bgc2;}
+#pmcPage{
+	background: #fff;
+}
+
+.clearfix:after{
+	content: "";
+	display: block;
+	clear: both;
+	zoom: 1;
+	height: 1px;
+}
+.hide{
+	display: none;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+/**---------------------cardArea-------------------**/
+.cardArea{
+	float: left;
+	width: 1200px;
+	margin: 10px 0;
+
+	>.whatiscard{
+		background: #ffffe5;
+		border: 1px solid #fed18b;
+		float: left;
+
+		>img{
+			float: left;
+			margin: 4px 9px;
+			display: block;
+			width: 11px;
+			height: 15px;
+		}
+
+		>p{
+			float: left;
+			color: #1d95f6;
+			font-size: 12px;
+			line-height: 23px;
+			cursor: pointer;
+			margin-right: 9px;
+		}
+	}
+
+	>.assortcard{
+		float: left;
+		width: 1200px;
+		margin-top: 10px;
+		background: #fff;
+		border: 1px solid #e0e0e0;
+
+		>a{
+			float: left;
+			padding: 10px 16px;
+			color: #212121;
+			font-size: 14px;
+
+			>p{
+				float: left;
+			}
+
+			>i{
+				color: #999999;
+				float: left;
+			}
+		}
+
+		>.sort{
+			>i{
+				color: #ff8a00;
+			}
+		}
+
+		>.reverse{
+			>i{
+				transform: rotate(180deg);
+				-ms-transform: rotate(180deg);		/* IE 9 */
+				-webkit-transform: rotate(180deg);	/* Safari and Chrome */
+				-o-transform: rotate(180deg);		/* Opera */
+				-moz-transform: rotate(180deg);		/* Firefox */
+			}
+		}
+	}
+
+	>.card_list{
+		margin-top: 10px;
+		padding-bottom: 10px;
+		width: 1224px;
+		min-height: 500px;
+		background: #fff;
+		float: left;
+
+		>ul{
+			>li{
+				float: left;
+				list-style: none;
+				margin-right: 24px;
+				width: 180px;
+				// border: solid 1px #d2d2d2;
+				margin-top: 18px;
+				margin-bottom: 18px;
+			}
+		}
+	}
+}

@@ -1,0 +1,261 @@
+@import 'base.css';
+@import 'public.less';
+@import './iconfont.css';
+*{
+    box-sizing: border-box;
+}
+
+html{font-size:62.5%}
+body{background:@bgc2;font-size:1.2rem;color:@color3;}
+
+.clearfix:after{
+	content: "";
+	display: block;
+	clear: both;
+	zoom: 1;
+	height: 1px;
+}
+.hide{
+	display: none;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+/**---------------------auto_main-------------------**/
+.auto_main{
+	>section{
+		margin:10px 0 0 10px;float:left;min-height:670px;background:#fff;width:1000px;
+		>nav{
+			ul{
+				height:37px;
+				border-bottom:1px solid #e6e6e6;
+				li{
+					float:left;padding:10px 35px;background:#f8f8f8;border-right:1px solid #e6e6e6;cursor:pointer;
+					&.active{border-top:2px solid #ff0000;font-weight: 900;color:#ff0000;background:#fff;margin-top:-1px;}
+				}
+			}
+		}
+	}
+}
+
+/**---------------------right-------------------**/
+.right{
+	float: left;
+	width: 1000px;
+	margin-top: 0 !important;
+	margin-left: 0 !important;
+
+	>.pf_title{
+		height: 36px;
+		margin: 0 0 1px 0;
+		padding-left: 24px;
+		line-height: 36px;
+		background: #fff;
+
+		>a {
+			font-size: 14px;
+			color: #292929;
+			cursor: pointer;
+		}
+
+		>a:hover {
+			text-decoration: underline;
+		}
+	}
+
+	>.pf_con {
+		min-height: 500px;
+		background: #fff;
+		overflow: auto;
+
+		>.card_handle{
+			// border: solid 1px #ffc7c7;
+			// background: #ffecec;
+			margin: 0 16px;
+			margin-top: 14px;
+			padding: 15px 18px;
+
+			>a{
+				position: relative;
+				text-decoration: none;
+				color: #292929;
+				font-size: 12px;
+				line-height: 28px;
+				display: flex;
+				float: left;
+				margin-left: 45px;
+				float: right;
+				margin-right: 0;
+
+				i{
+					font-size: 14px;
+					margin-right: 5px;
+					color: #999;
+				}
+
+				>span{
+					position: relative;
+
+					>b{
+						position: absolute;
+						display: block;
+						right: 0;
+						transform: translateX(100%);
+						-webkit-transform: translateX(100%);
+						-ms-transform: translateX(100%);
+						-moz-transform: translateX(100%);
+						-o-transform: translateX(100%);
+						top: -6px;
+						font-weight: normal;
+						padding: 3px 5px;
+						border-radius: 8px;
+						background: #f00;
+						color: #fff;
+						font-size: 10px;
+						line-height: 1;
+					}
+				}
+				>span:hover{
+					text-decoration: underline;
+				}
+			}
+
+			>.s_search{
+				float: left;
+
+				>label{
+					display: block;
+					float: left;
+					line-height: 28px;
+					font-size: 12px;
+					margin-right: 6px;
+				}
+				>select{
+					display: block;
+					float: left;
+					line-height: 28px;
+					height: 28px;
+					width: 212px;
+					font-size: 12px;
+				}
+
+				>button{
+					display: block;
+					float: left;
+					width: 50px;
+					height: 28px;
+					border: 1px solid #e20000;
+					background: #f73130;
+					color: #fff;
+					border-radius: 2px;
+					font-size: 14px;
+					margin-left: 12px;
+				}
+				>button:active{
+					background: #e20000;
+				}
+			}
+		}
+
+		>.assortcard{
+			float: left;
+			width: 952px;
+			margin-top: 10px;
+			margin-left: 24px;
+			margin-right: 24px;
+			background: #f3f3f3;
+			border: 1px solid #e0e0e0;
+
+			>a{
+				float: left;
+				padding: 10px 16px;
+				color: #212121;
+				font-size: 14px;
+
+				>p{
+					float: left;
+				}
+
+				>i{
+					color: #999999;
+					float: left;
+				}
+			}
+
+			>.sort{
+				>i{
+					color: #ff8a00;
+				}
+			}
+
+			>.reverse{
+				>i{
+					transform: rotate(180deg);
+					-ms-transform: rotate(180deg);		/* IE 9 */
+					-webkit-transform: rotate(180deg);	/* Safari and Chrome */
+					-o-transform: rotate(180deg);		/* Opera */
+					-moz-transform: rotate(180deg);		/* Firefox */
+				}
+			}
+		}
+
+		>.card_list{
+			margin: 0 15px;
+			padding-bottom: 10px;
+
+			>ul{
+				>li{
+					float: left;
+					list-style: none;
+					margin: 0 7px;
+					width: 180px;
+					// border: solid 1px #d2d2d2;
+					margin-top: 36px;
+
+					>a{
+						display: block;
+						font-size: 14px;
+						color: #212121;
+						margin-top: 10px;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						overflow: hidden;
+					}
+				}
+
+				>li:last-child{
+					>.addCard{
+						position: relative;
+						width: 100%;
+						min-height: 130px;
+						border: 1px solid #d2d2d2;
+						margin-top: 25px;
+						cursor: pointer;
+
+						>p{
+							position: relative;
+							margin: 6px 6px;
+							border: 1px dashed #d2d2d2;
+							min-height: 118px;
+
+							>span{
+								display: block;
+								text-align: center;
+							}
+
+							>span:first-child{
+								color: #d2d2d2;
+								font-size: 38px;
+							}
+							>span:last-child{
+								color: #777;
+								font-size: 12px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

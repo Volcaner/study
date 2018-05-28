@@ -1,0 +1,263 @@
+@import 'base.css';
+@import 'public.less';
+@import './iconfont.css';
+*{
+    box-sizing: border-box;
+}
+
+html{font-size:62.5%}
+body{background:@bgc2;font-size:1.2rem;color:@color3;}
+
+.clearfix:after{
+	content: "";
+	display: block;
+	clear: both;
+	zoom: 1;
+	height: 1px;
+}
+.hide{
+	display: none;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+/**---------------------right-------------------**/
+.right{
+	float: left;
+	width: 1000px;
+	margin-top: 10px;
+	margin-left: 10px;
+
+	>.pf_title{
+		height: 36px;
+		margin: 0 0 1px 0;
+		padding-left: 24px;
+		line-height: 36px;
+		background: #fff;
+
+		>a {
+			font-size: 14px;
+			color: #292929;
+			cursor: pointer;
+		}
+
+		>a:hover {
+			text-decoration: underline;
+		}
+	}
+
+	>.pf_con {
+		// min-height: 500px;
+		background: #fff;
+		overflow: auto;
+		margin-bottom: 1px;
+		padding-bottom: 14px;
+
+		>.c_basicInfo{
+			position: relative;
+			width: 956px;
+			// height: 90px;
+			border: 1px solid #ffc7c7;
+			background: #ffecec;
+			margin: 0 auto;
+			margin-top: 14px;
+
+			>p{
+				float: right;
+				border-right: 1px solid #d2d2d2;
+				height: 34px;
+				margin: 27px 0;
+				font-size: 12px;
+				width: 20%;
+
+				>span{
+					display: block;
+					// text-align: center;
+					line-height: 1;
+					padding-left: 26px;
+					color: #696969;
+				}
+
+				>span:last-child{
+					margin-top: 10px;
+					color: #292929;
+				}
+			}
+
+			>p:first-child{
+				float: left;
+				border: none;
+				
+				>span{
+					>p{
+						max-width: calc(100% - 16px);
+						float: left;
+						line-height: 14px;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						overflow: hidden;
+					}
+
+					>a{
+						color: #1c9eff;
+						font-size: 14px;
+						margin-left: 5px;
+					}
+				}
+			}
+
+			>p:nth-child(2){
+				border: none;
+			}
+
+			>p:last-child{
+				// border: none;
+			}
+		}
+		>.offShelf{
+			border: 1px solid #e6e6e6;
+			background: #fff;
+			background: url(../images/failed.png);
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position-x: 790px;
+			background-origin: border-box;
+		}
+	}
+
+	>.pf_saleRecord{
+		min-height: 500px;
+		background: #fff;
+		overflow: auto;
+
+		>.sr_list{
+			position: relative;
+			float: left;
+			width: 100%;
+
+			>.sr_tab{
+				position: relative;
+				display: block;
+				padding: 0 28px;
+
+				>ul{
+					position: relative;
+					margin: 0 auto;
+					border-bottom: 1px solid #e6e6e6;
+
+					>li{
+						position: relative;
+						list-style: none;
+						float: left;
+						padding: 14px 0;
+						color: #626262;
+						font-size: 14px;
+
+						>p{
+							float: left;
+						}
+
+						>i{
+							float: left;
+							color: #999999;
+						}
+					}
+
+					>li:nth-child(1){
+						width: 20%;
+						cursor: pointer;
+					}
+					>li:nth-child(2){
+						width: 20%;
+						cursor: pointer;
+					}
+					>li:nth-child(3){
+						width: 20%;
+					}
+					>li:nth-child(4){
+						width: 40%;
+					}
+
+					>.sort{
+						>i{
+							color: #ff8a00;
+						}
+					}
+
+					>.reverse{
+						>i{
+							transform: rotate(180deg);
+							-ms-transform: rotate(180deg);		/* IE 9 */
+							-webkit-transform: rotate(180deg);	/* Safari and Chrome */
+							-o-transform: rotate(180deg);		/* Opera */
+							-moz-transform: rotate(180deg);		/* Firefox */
+						}
+					}
+				}
+			}
+
+			>.sr_dataList{
+				position: relative;
+				display: block;
+				padding: 0 28px;
+
+				>ul{
+
+					>li{
+						list-style: none;
+						display: block;
+						float: left;
+						border-bottom: 1px solid #e6e6e6;
+						width: 100%;
+
+						>ul{
+
+							>li{
+								position: relative;
+								list-style: none;
+								float: left;
+								padding: 14px 0;
+								color: #626262;
+								font-size: 12px;
+
+								>b{
+									font-weight: normal;
+								}
+							}
+
+							>li:nth-child(1){
+								width: 20%;
+
+								>p{
+									max-width: calc(100% - 16px);
+									float: left;
+									line-height: 14px;
+									white-space: nowrap;
+									text-overflow: ellipsis;
+									overflow: hidden;
+								}
+
+								>i{
+									color: #1c9eff;
+									font-size: 14px;
+									margin-left: 5px;
+								}
+							}
+							>li:nth-child(2){
+								width: 20%;
+								color: #e20000;
+							}
+							>li:nth-child(3){
+								width: 20%;
+							}
+							>li:nth-child(4){
+								width: 40%;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

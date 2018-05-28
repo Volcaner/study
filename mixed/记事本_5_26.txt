@@ -1,0 +1,47 @@
+﻿技能栈：
+webpack    vue    vue-resource    vuex    less    velocity    zepto    touch    flex
+
+
+打字的时候更改光标： 
+insert
+
+
+maven  js 热加载  (用 maven 启动服务)
+<plugin>
+	<groupId>org.eclipse.jetty</groupId>
+	<artifactId>jetty-maven-plugin</artifactId>
+	<version>9.2.14.v20151106</version>
+	<configuration>
+		<scanIntervalSecond>10</scanIntervalSecond>  
+		<webApp>  
+			<contextPath>/yich</contextPath>  
+			<descriptor>src/main/webapp/WEB-INF/web.xml</descriptor>
+		</webApp>
+	</configuration>
+</plugin>  
+
+maven build
+jetty:run -Dorg.eclipse.jetty.annotations.maxWait=120
+
+
+issues
+http://task.ant188.com/redmine/projects/ab/issues
+
+
+12vpn
+url: https://twelverocks.com/login/
+mail: zlj844230@aliyun.com
+Username: gamoniwule
+Password: dazawupibu
+
+wiki
+这是您在 蚁巢百科（http://wiki.ant188.com/）的用户资料
+用户名：kaican
+密码：jerrokmoz99-
+https://www.dokuwiki.org/wiki:syntax
+
+飞鱼星
+http://192.168.0.1:60/portfw.cgi
+
+交互
+http://192.168.0.234:8080/platindex/
