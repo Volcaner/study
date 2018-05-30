@@ -1,3 +1,5 @@
+import Queue from "../public/queue_by_array.js";
+
 var start = 0, end = 0;
 
 
@@ -141,7 +143,7 @@ var dynamicCalculationIntervalShellSort = function(arr) {  // 动态计算间隔
 
 
 // var arr3 = [659, 2, 4, 65, 231, 4, 63, 8, 34, 98, 54, 345, 89, 75, 24, -1, 0];
-// for(var a = 0; a < 10000; a++) {
+// for(var a = 0; a < 10000000; a++) {
 // 	arr3.push(Math.random()*1000);
 // }
 // start = new Date().getTime();
@@ -216,7 +218,7 @@ var mergeArrays = function(arr, startLeft, stopLeft, startRight, stopRight) {
 };
 
 // var nums = [659, 2, 4, 65, 231, 4, 63, 8, 34, 98, 54, 345, 89, 75, 24, -1, 0];
-// for(var a = 0; a < 1000000; a++) {
+// for(var a = 0; a < 10000000; a++) {
 // 	nums.push(Math.random()*1000);
 // }
 
@@ -227,6 +229,121 @@ var mergeArrays = function(arr, startLeft, stopLeft, startRight, stopRight) {
 // end = new Date().getTime();
 // console.log("自底向上的归并排序：" + (end - start));
 // console.log(nums);
+
+
+// 快速排序
+function qSort(arr) {
+	var len = arr.length;
+	if(len <= 0) return [];
+	var lesser = [], greater = [], pivot = arr[0];
+	for(var i = 1; i < len; i++) {
+		if(arr[i] < pivot) {
+			lesser.push(arr[i]);
+		}
+		else {
+			greater.push(arr[i]);
+		}
+	}
+	return qSort(lesser).concat(pivot, qSort(greater));
+};
+
+// var list = [659, 2, 4, 65, 231, 4, 63, 8, 34, 98, 54, 345, 89, 75, 24, -1, 0];
+// for(var a = 0; a < 10000000; a++) {
+// 	list.push(Math.random()*1000);
+// }
+
+// start = new Date().getTime();
+
+// list = qSort(list);
+
+// end = new Date().getTime();
+// console.log("快速排序：" + (end - start));
+// console.log(list);
+
+
+// 基数排序
+function distribute(nums, queues, n, digit) {  // 参数digit表示 个位 或 十位 上的值(只适用于个位数和十位数)
+	for(var i = 0; i < n; i++) {
+		if(digit == 1) {
+			queues[nums[i]%10].enqueue(nums[i]);
+		}
+		else {
+			queues[Math.floor(nums[i]/10)].enqueue(nums[i]);
+		}
+	}
+};
+function collect(queues, nums) {
+	var i = 0;
+	for(var digit = 0; digit < 10; digit++) {
+		while(!queues[digit].empty()) {
+			nums[i++] = queues[digit].dequeue();
+		}
+	}
+};
+
+var queues = [];
+for(var i = 0; i < 10; i++) {
+	queues[i] = new Queue();
+}
+var nums = [];
+for(var i = 0; i < 10; i++) {
+	nums[i] = Math.floor(Math.floor(Math.random()*100));
+}
+
+// console.log(nums);
+// distribute(nums, queues, 10, 1);
+// collect(queues, nums);
+// console.log(nums);
+// distribute(nums, queues, 10, 2);
+// collect(queues, nums);
+// console.log(nums);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

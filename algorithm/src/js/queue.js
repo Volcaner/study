@@ -31,7 +31,7 @@ class Queue extends LinkedList {
 // }
 // queue_test();
 
-function queue_test() {
+function queue_test() {  // 排序
 	let a = [0, 87, 1, 7, 98, 19, 19, 77, 55, 75, 12, 10, 100, 1000, 79, 234, 543, 43, 5, 23, 543, 43, 12, 7, 43, 654, 62, 62, 46, 2643, 87];
 
 	const queues = [];
