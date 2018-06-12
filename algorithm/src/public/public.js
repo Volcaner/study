@@ -20,11 +20,11 @@ var isNorU = function(str){
 
 // 日期
 var getDate = function (format, timestamp) {
-	/** 
-	* 和PHP一样的时间戳格式化函数 
-	* @param {string} format 格式 
-	* @param {int} timestamp 要格式化的时间 默认为当前时间 
-	* @return {string}   格式化的时间字符串 
+	/**
+	* 和PHP一样的时间戳格式化函数
+	* @param {string} format 格式
+	* @param {int} timestamp 要格式化的时间 默认为当前时间
+	* @return {string}   格式化的时间字符串
 	*/
     var a, jsdate = ((timestamp) ? new Date(timestamp * 1000) : new Date());
     var pad = function(n, c) {
@@ -46,7 +46,7 @@ var getDate = function (format, timestamp) {
     };
     var txt_months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var f = {
-        // Day 
+        // Day
         d: function() {
             return pad(f.j(), 2)
         },
@@ -72,7 +72,7 @@ var getDate = function (format, timestamp) {
             return (jsdate - new Date(jsdate.getFullYear() + "/1/1")) / 864e5 >> 0
         },
 
-        // Week 
+        // Week
         W: function() {
             var a = f.z(),
             b = 364 + f.L() - a;
@@ -89,7 +89,7 @@ var getDate = function (format, timestamp) {
             }
         },
 
-        // Month 
+        // Month
         F: function() {
             return txt_months[f.n()]
         },
@@ -115,12 +115,12 @@ var getDate = function (format, timestamp) {
             }
         },
 
-        // Year 
+        // Year
         L: function() {
             var y = f.Y();
             return (! (y & 3) && (y % 1e2 || !(y % 4e2))) ? 1 : 0
         },
-        //o not supported yet 
+        //o not supported yet
         Y: function() {
             return jsdate.getFullYear()
         },
@@ -128,7 +128,7 @@ var getDate = function (format, timestamp) {
             return (jsdate.getFullYear() + "").slice(2)
         },
 
-        // Time 
+        // Time
         a: function() {
             return jsdate.getHours() > 11 ? "pm": "am"
         },
@@ -136,7 +136,7 @@ var getDate = function (format, timestamp) {
             return f.a().toUpperCase()
         },
         B: function() {
-            // peter paul koch: 
+            // peter paul koch:
             var off = (jsdate.getTimezoneOffset() + 60) * 60;
             var theSeconds = (jsdate.getHours() * 3600) + (jsdate.getMinutes() * 60) + jsdate.getSeconds() + off;
             var beat = Math.floor(theSeconds / 86.4);
@@ -164,10 +164,10 @@ var getDate = function (format, timestamp) {
         s: function() {
             return pad(jsdate.getSeconds(), 2)
         },
-        //u not supported yet 
-        // Timezone 
-        //e not supported yet 
-        //I not supported yet 
+        //u not supported yet
+        // Timezone
+        //e not supported yet
+        //I not supported yet
         O: function() {
             var t = pad(Math.abs(jsdate.getTimezoneOffset() / 60 * 100), 4);
             if (jsdate.getTimezoneOffset() > 0) t = "-" + t;
@@ -178,13 +178,13 @@ var getDate = function (format, timestamp) {
             var O = f.O();
             return (O.substr(0, 3) + ":" + O.substr(3, 2))
         },
-        //T not supported yet 
-        //Z not supported yet 
-        // Full Date/Time 
+        //T not supported yet
+        //Z not supported yet
+        // Full Date/Time
         c: function() {
             return f.Y() + "-" + f.m() + "-" + f.d() + "T" + f.h() + ":" + f.i() + ":" + f.s() + f.P()
         },
-        //r not supported yet 
+        //r not supported yet
         U: function() {
             return Math.round(jsdate.getTime() / 1000)
         }
@@ -192,14 +192,14 @@ var getDate = function (format, timestamp) {
 
     var forReg = /([\])?([a-zA-Z])/g;
     return format.replace(forReg, function(t, s) {
-        if( t!=s ){ 
-		    // escaped 
-		    ret = s; 
+        if( t!=s ){
+		    // escaped
+		    ret = s;
 		} else if (f[s]) {
-            // a date function exists 
+            // a date function exists
             ret = f[s]();
         } else {
-            // nothing special 
+            // nothing special
             ret = s;
         }
         return ret;
@@ -243,18 +243,18 @@ var uuid = function(len, radix) {
     var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
     var uuid = [], i;
     radix = radix || chars.length;
- 
+
     if (len) {
       // Compact form
       for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random()*radix];
     } else {
       // rfc4122, version 4 form
       var r;
- 
+
       // rfc4122 requires these characters
       uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
       uuid[14] = '4';
- 
+
       // Fill in random data.  At i==19 set the high bits of clock sequence as
       // per rfc4122, sec. 4.1.5
       for (i = 0; i < 36; i++) {
@@ -264,7 +264,7 @@ var uuid = function(len, radix) {
         }
       }
     }
- 
+
     return uuid.join('');
 };
 
@@ -282,6 +282,56 @@ var toArray = function(s){  // Array.prototype.slice.call(arguments)能将具有
     }
 }
 
+// 封装自己的 cookie
+var cookie = {
+    //根据key值获取对应的cookie
+    get:function(key){
+        //获取cookie
+        var data = document.cookie;
+        //获取key第一次出现的位置    pwd=
+        var startIndex = data.indexOf(key+'=');
+        //  name=123;pwd=abc
+        //如果开始索引值大于0表示有cookie
+        if(startIndex>-1) {
+            //key的起始位置等于出现的位置加key的长度+1
+            startIndex = startIndex+key.length+1;
+
+            //结束位置等于从key开始的位置之后第一次;号所出现的位置
+            var endIndex = data.indexOf(';',startIndex);
+
+            //如果未找到结尾位置则结尾位置等于cookie长度，之后的内容全部获取
+            endIndex = endIndex<0 ? data.length:endIndex;
+
+            return decodeURIComponent(data.substring(startIndex,endIndex));
+        }else {
+            return '';
+        }
+    },
+    set:function(key,value,time){
+        //默认保存时间
+        var time = time;
+        //获取当前时间
+        var cur = new Date();
+        var undefined;
+
+        //设置指定时间
+        cur.setTime(cur.getTime()+time*24*3600*1000);
+
+        //创建cookie  并且设置生存周期为GMT时间
+        document.cookie = key+'='+encodeURIComponent(value)+';expires='+(time===undefined?'':cur.toGMTString());
+    },
+
+    del:function(key){
+        //获取cookie
+        var data = this.get(key);
+
+        //如果获取到cookie则重新设置cookie的生存周期为过去时间
+        if(data!==false){
+            this.set(key,data,-1);
+        }
+    }
+};
+
 module.exports = {
     toArray,
     getHrefParam,
@@ -292,5 +342,3 @@ module.exports = {
     bIsObjUorN,
     uuid,
 };
-
-
