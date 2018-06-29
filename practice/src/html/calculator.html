@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Javascript Loan Calculator</title>
+        <style media="screen">
+
+        </style>
+    </head>
+    <body>
+        <!--
+            这是一个 Html 表格，其中包含<input>元素可以输入数据
+            程序将在<span>元素中显示计算结果，这些元素都具有类似‘interest’和‘years’的id
+            这些id将在表格下面的Javascript代码中运用。我们注意到，一些
+            input元素定义了‘onchange’或‘onclick’的事件处理程序，以便用户在输入数据或者点击inputs时
+            执行指定的Javascript代码段
+        -->
+
+        <table>
+            <tr>
+                <th>Enter Loan Data:</th>
+                <td></td>
+                <th>Loan Balance, Cumulative Equity, and Interset Payments</th>
+            </tr>
+
+            <tr>
+                <td>Amount of the load ($):</td>
+                <td><input id="amount" onchange="calculate()" /></td>
+                <td rowspan="8">
+                    <canvas id="graph" width="400" height="250"></canvas>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Annual interest (%):</td>
+                <td><input id="apr" onchange="calculate()" /></td>
+            </tr>
+
+            <tr>
+                <td>Repayment period (years):</td>
+                <td><input id="years" onchange="calculate()" /></td>
+            </tr>
+
+            <tr>
+                <td>Zipcode (to find lenders):</td>
+                <td><input id="zipcode" onchange="calculate()" /></td>
+            </tr>
+
+            <tr>
+                <td>Approximate Payments:</td>
+                <td><button onclick="calculate()">Calculate</button></td>
+            </tr>
+
+            <tr>
+                <td>Monthly payments:</td>
+                <td>$<span class="output" id="payment"></span></td>
+            </tr>
+
+            <tr>
+                <td>Total payments:</td>
+                <td>$<span class="output" id="total"></span></td>
+            </tr>
+
+            <tr>
+                <td>Total interest:</td>
+                <td>$<span class="output" id="totalinterest"></span></td>
+            </tr>
+
+            <tr>
+                <th>Sponsors:</th>
+                <td colspan="2">
+                    Apply for your loan with one of these fine lenders:
+                    <div id="lenders"></div>
+                </td>
+            </tr>
+        </table>
+
+        <!--
+            随后是Javascript代码，这些代码内嵌在了一个<script>标签里
+            通常情况下，这些脚本代码应该放在<head>标签中
+            将javascript代码放在html代码之后仅仅是为了便于理解
+        -->
+
+        <script type="text/javascript">
+            "use strict";  // 如果浏览器支持，则开启ECMAScript 5的严格模式
+
+            /**
+            * 这里的脚本定义了calculate() 函数，在html代码中绑定事件处理程序时会调用它
+            * 这个函数从<input>元素中读取数据，计算贷款赔付信息，并将结果显示在<span>元素中读取数据
+            * 同样，这里还保存了用户数据、展示了放贷人链接并绘制除了图标
+            **/
+            function calculate() {
+                // 查找文档中用于输入输出的元素
+                var amount = document.getElementById('amount');
+                var apr = document.getElementById('apr');
+                var years = document.getElementById('years');
+                var zipcode = document.getElementById('zipcode');
+                var payment = document.getElementById('payment');
+                var total = document.getElementById('total');
+                var totalinterest = document.getElementById('totalinterest');
+
+                // 假设所有输入的都是合法的，姜葱input元素中获取输入数据
+                // 将百分比格式转化为小数格式，并从年利率转化为月利率
+                // 将年度赔付转化为月度赔付
+                var principal = parseFloat(amount.value);
+                var interest = parseFloat(apr.value);
+                var payments = parseFloat(years.value);
+
+                // 现在计算月度赔付的数据
+                var x = Math.pow(1 + interest, payments);
+                var monthly = (principal * x * interest) / (x - 1);
+
+                // 如果没有超过Javascript能表示的数字范围，且用户的输入也正确
+                // 这里所展示的结果就是合法的
+                if(isFinite(monthly)) {
+                    // 将数字填充至输出字段的位置，四舍五入到小数点后两位数字
+                    payment.innerHTML = monthly.toFixed(2);
+                    total.innerHTML = (monthly * payments).toFixed(2);
+                    totalinterest.innerHTML = ((monthly * payments) - principal).toFixed(2);
+
+                    // 将用户的数据保存下来，这样在下次访问时也能取到数据
+                    save(amount.value, apr.value, years.value, zipcode.value);
+
+                    // 找到并展示本地放贷人，但忽略网络错误
+                    try{
+                        getLenders(amount.value, apr.value, years.value, zipcode.value);
+                    } catch(e) {
+                        // 忽略异常
+                    }
+
+                    // 最后，图表展示贷款余额、利息、资产收益
+                    chart(principal, interest, monthly, payments);
+                }
+                else {
+                    // 计算结果不是数字或是无穷大，意味着输入数据是非法或不完整的
+                    // 清空之前的输入数据
+                    payment.innerHTML = '';
+                    total.innerHTML = '';
+                    totalinterest.innerHTML = '';
+                    chart();  // 不传参的话就是清除图表
+                }
+
+            }
+
+            // 将用户的输入保存至localstorage对象的属性中
+            // 这些属性在再次访问时还会继续保持在原位置
+            // 如果你在浏览器中按照 file://URL 的方式直接打开本地文件
+            // 则无法在某些浏览器使用存储功能（比如Firefox）
+            // 而通过HTTP打开文件是可行的
+            function save(amount, apr, years, zipcode) {
+                if(window.localstorage) {
+                    localstorage.load_amount = amount;
+                    localstorage.load_apr = apr;
+                    localstorage.load_years = years;
+                    localstorage.load_zipcode = zipcode;
+                }
+            }
+
+            // 在文档首次加载时，将会尝试还原输入字段
+            window.load = function() {
+                if(window.localstorage && localstorage.load_amount) {
+                    document.getElementById('amount').value = localstorage.load_amount;
+                    document.getElementById('apr').value = localstorage.load_apr;
+                    document.getElementById('years').value = localstorage.load_years;
+                    document.getElementById('zipcode').value = localstorage.load_zipcode;
+                }
+            }
+
+            // 将用户的输入发送至服务器脚本（理论上）
+            // 将返回一个本地放贷人的链接列表,在这个列子中并没有实现这种查找放贷人的服务
+            // 但如果该服务存在，该函数会使用它
+            function getLenders(amount, apr, years, zipcode) {
+                // 如果浏览器不支持XMLHttpRequest对象，则退出
+                if(!window.XMLHttpRequest) return;
+
+                // 找到要显示放贷人列表的元素
+                var ad = document.getElementById('lenders');
+                if(!ad) return;  // 如果返回为空，则退出
+
+                // 将用户的输入数据进行URL编码，并作为查询参数附入URL里
+                var url = 'getLenders.php' +
+                    '?amt=' + encodeURIComponent(amount) +
+                    '&apr=' + encodeURIComponent(apr) +
+                    '&yrs=' + encodeURIComponent(years) +
+                    '&zip=' + encodeURIComponent(zipcode);
+
+                // 通过XMLHttpRequest对象来提取返回数据
+                var req = new XMLHttpRequest();  // 发起一个新的请求
+                req.open(url);  // 通过URL发起一个http get请求
+                req.send(null);  // 不带任何正文发送这个请求
+
+                // 在返回数据之前，注册一个事件处理函数
+                // 这个处理函数，将会在服务器的响应返回至客户端的时候调佣
+                // 这种异步编程模式在客户端Javascript中非常常见
+                req.onreadystatechange = function() {
+                    if(req.readyState == 4 && req.status == 200) {
+                        var response = req.responseText;  // http响应以字符串形式呈现
+                        var lenders = JSON.parse(response);
+
+                        // 将数组中的放贷人对象转换为HTML字符串形式
+                        var list= '';
+                        for(var i = 0; i < lenders.length; i++) {
+                            list += '<li><a href="' + lenders[i].url + '" >' + lenders[i].name + '</a>';
+                        }
+
+                        // 将数据在html元素中呈现
+                        ad.innerHTML = '<ul>' + list + '</ul>';
+                    }
+                }
+            }
+
+            // 在html<canvas>中用图标展示月度贷款余额、利息、资产收益
+            // 如果不传入参数，则清空图表
+            function chart(principal, interest, monthly, payments) {
+                var graph = document.getElementById('graph');  // canvas标签
+                graph.width = graph.width;  // 用一种巧妙的手段清除并重置画布
+
+                // 如果不传入参数，或者浏览器不支持画布，则直接退出
+                if(arguments.length == 0 || !graph.getContext) return;
+
+                // 获取画布元素的‘context’对象，这个对象定义了一组绘画api
+                var g = graph.getContext('2d');  // 所有的绘画都基于这个对象
+                var width = graph.width;
+                var heigth = graph.height;
+
+                // 这里函数作用是将付款数字和美元数据转换为像素
+                function paymentToX(n) {
+                    return n * width / payments;
+                }
+                function amountToY(a) {
+                    return heigth - (a * heigth / (monthly * payments * 1.05));
+                }
+
+                // 付款数据是一条从（0,0）到（payments，monthly*payments）的直线
+                g.moveTo(paymentToX(0), amountToY(0));  // 从左下方开始
+                g.lineTo(paymentToX(payments), amountToY(monthly*payments));  // 绘制右上方
+                g.lineTo(paymentToX(payments), amountToY(0));  // 再到右下方
+                g.closePath();  // 将结尾连接至开头
+                g.fillStyle = '#f88';
+                g.fill();
+                g.font = 'bold 12px sans-serif';
+                g.fillText('Total Interest Payments', 20, 20);
+
+                // 很多资产数据并不是线性的，很难将其反映到图表中
+                var equity = 0;
+                g.beginPath();  // 开始绘制新图形
+                g.moveTo(paymentToX(0), amountToY(0));  // congzuoxiafangkaishi
+                for(var p = 1; p <= payments; p++) {
+                    // 计算出每一笔赔付利息
+                    var thisMonthsInterest = (principal - equity) * interest;
+                    equity += (monthly - thisMonthsInterest);  // 得到资产值
+                    g.lineTo(paymentToX(p), amountToY(equity));  // 将数据绘制到画布上
+                }
+                g.lineTo(paymentToX(payments), amountToY(0));
+                g.closePath();
+                g.fillStyle = 'green';
+                g.fill();
+                g.fillText('Total Equity', 20, 35);
+
+                // 再次循环，余额数据显示为黑色线条
+                var bal = principal;
+                g.beginPath();
+                g.moveTo(paymentToX(0), amountToY(bal));
+                for(var p = 1; p <= payments; p++) {
+                    var thisMonthsInterest = bal * interest;
+                    bal -= (monthly - thisMonthsInterest);
+                    g.lineTo(paymentToX(p), amountToY(bal));
+                }
+                g.lineWidth = 3;
+                g.stroke();
+                g.fillStyle = 'black';
+                g,fillText('Loan Balance', 20, 50);
+
+                // 将年度数据在X轴做标记
+                g.textAlign = 'center';
+                var y = amountToY(0);
+                for(var year = 1; year * 12 <= payments; year++) {
+                    var x = paymentToX(yer * 12);
+                    g.fillRect(x - 0.5, y - 3, 1, 3);
+                    if(year == 1) g.fillText('Year', x, y - 5);
+                    if(year % 5 == 0 && year * 12 !== payments) g.fillText(String(year), x, y - 5);
+                }
+
+                // 将赔付数额标记在右边界
+                g.textAlign = 'right';
+                g.textBaseLine = 'middle';
+                var ticks = [monthly * payments, principal];
+                var rightEdge = paymentToX(payments);
+                for(var i = 0; i < ticks.length; i++) {
+                    var y = amountToY(tick[i]);
+                    g.fillRect(rightEdge - 3, y - 0.5, 3, 1);
+                    g.fillText(String(ticks[i].toFixed(0)), rightEdge - 5, y);
+                }
+            }
+
+        </script>
+
+    </body>
+</html>
