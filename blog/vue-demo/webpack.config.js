@@ -59,14 +59,15 @@ const config = {
         htmlPlugin
         // new VueLoaderPlugin()  // vue-loader v14,v15
     ],
-    watch: true,
-    devServer: {
-        compress: true,
-        contentBase: path.join(__dirname, 'dist'),
-        inline: true,
-        port: 3000,
-        hot: true
-    }
+    watch: true
+    // ,
+    // devServer: {
+    //     compress: true,
+    //     contentBase: path.join(__dirname, 'dist'),
+    //     inline: true,
+    //     port: 3000,
+    //     hot: true
+    // }
 };
 
 module.exports = config;
