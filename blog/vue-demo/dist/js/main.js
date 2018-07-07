@@ -8395,14 +8395,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = {
     data() {
@@ -8428,7 +8420,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "\n#mian{\n    background: #aaa;\n}\n", ""]);
+exports.push([module.i, "\n#main{\n    background: #aaa;\n}\n", ""]);
 
 // exports
 
@@ -8788,70 +8780,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "main"
     }
   }, [_vm._v("\n    " + _vm._s(_vm.message) + "\n    "), _c('input', {
-    attrs: {
-      "type": "button",
-      "value": "click"
-    },
-    on: {
-      "click": _vm.dialog
-    }
-  }), _vm._v(" "), _c('input', {
-    attrs: {
-      "type": "button",
-      "value": "click"
-    },
-    on: {
-      "click": _vm.dialog
-    }
-  }), _vm._v(" "), _c('input', {
-    attrs: {
-      "type": "button",
-      "value": "click"
-    },
-    on: {
-      "click": _vm.dialog
-    }
-  }), _vm._v(" "), _c('input', {
-    attrs: {
-      "type": "button",
-      "value": "click"
-    },
-    on: {
-      "click": _vm.dialog
-    }
-  }), _vm._v(" "), _c('input', {
-    attrs: {
-      "type": "button",
-      "value": "click"
-    },
-    on: {
-      "click": _vm.dialog
-    }
-  }), _vm._v(" "), _c('input', {
-    attrs: {
-      "type": "button",
-      "value": "click"
-    },
-    on: {
-      "click": _vm.dialog
-    }
-  }), _vm._v(" "), _c('input', {
-    attrs: {
-      "type": "button",
-      "value": "click"
-    },
-    on: {
-      "click": _vm.dialog
-    }
-  }), _vm._v(" "), _c('input', {
-    attrs: {
-      "type": "button",
-      "value": "click"
-    },
-    on: {
-      "click": _vm.dialog
-    }
-  }), _vm._v(" "), _c('input', {
     attrs: {
       "type": "button",
       "value": "click"

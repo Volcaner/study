@@ -1,3 +1,5 @@
+console.log(__dirname);
+
 console.log("webpack start！-------------------------------------------------");
 
 const webpack = require('webpack');
@@ -10,8 +12,10 @@ const htmlPlugin = new htmlWebpackPlugin({
     inject: 'body',
     title: 'Study Demo',
     chunks: '',
-    hash: false
+    hash: true
 });
+
+console.log("aaa");
 
 // const VueLoaderPlugin = require('vue-loader/lib/plugin');  // vue-loader v14,v15
 
@@ -60,14 +64,19 @@ const config = {
         // new VueLoaderPlugin()  // vue-loader v14,v15
     ],
     watch: true
-    // ,
-    // devServer: {
-    //     compress: true,
-    //     contentBase: path.join(__dirname, 'dist'),
-    //     inline: true,
-    //     port: 3000,
-    //     hot: true
-    // }
+    ,
+    devServer: {
+        // compress: true,
+        // contentBase: path.join(__dirname, 'dist'),
+        // watchContentBase: true,
+        inline: true,  // 实时更新
+        port: 3000,
+        hot: false,
+        // hotOnly: true,
+        host: '127.0.0.1'
+    }
 };
+
+console.log("end");
 
 module.exports = config;

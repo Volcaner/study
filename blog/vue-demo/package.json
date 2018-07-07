@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --progress --color",
+    "build": "node build/webpack.config.js --progress --color",
     "start": "webpack-dev-server --color"
   },
   "author": "Volcaner",
