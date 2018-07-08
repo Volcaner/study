@@ -10,6 +10,7 @@ const HtmlMinifier = require('html-minifier');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin();
 const NamedModulesPlugin = new webpack.NamedModulesPlugin();
+const UglifyjsPlugin = require('uglifyjs-webpack-plugin');
 
 const extractCss = new ExtractTextPlugin({
 	filename: './css/[name].css'
@@ -36,6 +37,17 @@ module.exports = {
 					]
 				})
 			},
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+					query: {
+						presets: ['es2015'],
+						plugins: ['transform-runtime']
+					}
+				}
+			}
 		]
 	},
 	plugins: [
@@ -82,6 +94,15 @@ module.exports = {
 		HotModuleReplacementPlugin,  // 开启全局的模块热替换
 		// NamedModulesPlugin  // 当模块热替换（HMR）时在浏览器控制台输出对用户更友好的模块名字信息
 
+		new UglifyjsPlugin({
+			cache: true,
+			sourceMap: true,
+			uglifyOptions: {
+				output: {
+					beautify: true
+				}
+			}
+		})
 	],
 	devServer: {
 		contentBase: path.resolve(ROOT_PATH, './dist/'),
