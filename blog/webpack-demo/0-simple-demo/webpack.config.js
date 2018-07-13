@@ -22,7 +22,7 @@ module.exports = {
 	entry: entry,
 	output: {
 		path: path.resolve(ROOT_PATH, './dist/'),
-		filename: './js/[name].js'
+		filename: process.env.NODE_ENV === 'production' ? './js/[name].[hash].js' : './js/[name].js'
 	},
 	module: {
 		rules: [
@@ -56,7 +56,7 @@ module.exports = {
 			提取公共代码 至 common.js
 		**/
 		new webpack.optimize.CommonsChunkPlugin({
-			name: 'common',
+			name: ['moment', 'manifest'],
 			// filename: './js/[name].js',
 			// chunks: [  // 限定只使用这些入口 chunk
 			// 	'app',
@@ -65,6 +65,10 @@ module.exports = {
 			minChunks: Infinity,
 			// minSize: 1000,
 			// async: true
+			// minChunks: function(module) {
+			// 	// 该配置假定你引入的 vendor 存在于 node_modules 目录中
+			// 	return module.context && module.context.indexOf('node_modules') !== -1;
+			// }
 		}),
 
 		/**
@@ -76,7 +80,7 @@ module.exports = {
 			// publicPath: './',
 			filename: './html/app.html',
 			template: path.resolve(ROOT_PATH, './src/template/template.html'),
-			chunks: ['app', 'common'],
+			chunks: ['app', 'moment', 'manifest'],
 			inject: 'body',
 			minify: HtmlMinifier.minify,
 			meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'},
@@ -86,7 +90,7 @@ module.exports = {
 			title: 'My Test',
 			path: path.resolve(ROOT_PATH, './dist/'),
 			filename: './html/main.html',
-			chunks: ['main', 'common'],
+			chunks: ['main', 'moment', 'manifest'],
 			inject: 'body'
 		}),
 
@@ -95,13 +99,14 @@ module.exports = {
 		// NamedModulesPlugin  // 当模块热替换（HMR）时在浏览器控制台输出对用户更友好的模块名字信息
 
 		new UglifyjsPlugin({
-			cache: true,
-			sourceMap: true,
-			uglifyOptions: {
-				output: {
-					beautify: true
-				}
-			}
+			// cache: true,
+			sourceMap: true
+			// ,
+			// uglifyOptions: {
+			// 	output: {
+			// 		beautify: true
+			// 	}
+			// }
 		})
 	],
 	devServer: {

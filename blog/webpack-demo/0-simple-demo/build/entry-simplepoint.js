@@ -15,6 +15,7 @@ const EntryPoint = {
 		path.resolve(ROOT_PATH, './../src/js/vendor_2.js')
 	],
 	// common: path.resolve(ROOT_PATH, './../src/js/common.js')
+	moment: 'moment'
 };
 
 module.exports = EntryPoint;
