@@ -16,10 +16,7 @@ const extractCss = new ExtractTextPlugin({
 	filename: './css/[name].css'
 });
 
-const entry = require('./build/entry-simplepoint.js');
-
-module.exports = {
-	entry: entry,
+const config = {
 	output: {
 		path: path.resolve(ROOT_PATH, './dist/'),
 		filename: process.env.NODE_ENV === 'production' ? './js/[name].[hash].js' : './js/[name].js'
@@ -56,7 +53,7 @@ module.exports = {
 			提取公共代码 至 common.js
 		**/
 		new webpack.optimize.CommonsChunkPlugin({
-			name: ['moment', 'manifest'],
+			name: ['manifest'],
 			// filename: './js/[name].js',
 			// chunks: [  // 限定只使用这些入口 chunk
 			// 	'app',
@@ -74,25 +71,25 @@ module.exports = {
 		/**
 			生成对应模块的 html，并引入相应 js文件
 		**/
-		new HtmlWebpackPlugin({
-			title: 'My Test',
-			path: path.resolve(ROOT_PATH, './dist/'),
-			// publicPath: './',
-			filename: './html/app.html',
-			template: path.resolve(ROOT_PATH, './src/template/template.html'),
-			chunks: ['app', 'moment', 'manifest'],
-			inject: 'body',
-			minify: HtmlMinifier.minify,
-			meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'},
-			// favicon: path.resolve(ROOT_PATH, './src/image/logo.ico')
-		}),
-		new HtmlWebpackPlugin({
-			title: 'My Test',
-			path: path.resolve(ROOT_PATH, './dist/'),
-			filename: './html/main.html',
-			chunks: ['main', 'moment', 'manifest'],
-			inject: 'body'
-		}),
+		// new HtmlWebpackPlugin({
+		// 	title: 'My Test',
+		// 	path: path.resolve(ROOT_PATH, './dist/'),
+		// 	// publicPath: './',
+		// 	filename: './html/app.html',
+		// 	template: path.resolve(ROOT_PATH, './src/template/template.html'),
+		// 	chunks: ['app', 'moment', 'manifest'],
+		// 	inject: 'body',
+		// 	minify: HtmlMinifier.minify,
+		// 	meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'},
+		// 	// favicon: path.resolve(ROOT_PATH, './src/image/logo.ico')
+		// }),
+		// new HtmlWebpackPlugin({
+		// 	title: 'My Test',
+		// 	path: path.resolve(ROOT_PATH, './dist/'),
+		// 	filename: './html/main.html',
+		// 	chunks: ['main', 'moment', 'manifest'],
+		// 	inject: 'body'
+		// }),
 
 		extractCss,
 		HotModuleReplacementPlugin,  // 开启全局的模块热替换
@@ -117,3 +114,28 @@ module.exports = {
 	},
 	// watch: true
 };
+
+const entry = {
+	moment: 'moment'
+};
+const simplePoint = require('./build/entry-simplepoint.js');
+config.entry = Object.assign({}, entry, simplePoint);  // Object.assign() 浅拷贝
+
+for (key in simplePoint) {
+	const pluginObj = new HtmlWebpackPlugin({
+		title: 'My Test',
+		path: path.resolve(ROOT_PATH, './dist/'),
+		// publicPath: './',
+		filename: './html/' + key + '.html',
+		template: path.resolve(ROOT_PATH, './src/template/template.html'),
+		chunks: ['manifest', 'moment', key],
+		inject: 'head',
+		minify: HtmlMinifier.minify,
+		meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'},
+		// favicon: path.resolve(ROOT_PATH, './src/image/logo.ico')
+	});
+
+	config.plugins.push(pluginObj);
+}
+
+module.exports = config;
