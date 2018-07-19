@@ -12,6 +12,7 @@ const HotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin();
 const NamedModulesPlugin = new webpack.NamedModulesPlugin();
 const UglifyjsPlugin = require('uglifyjs-webpack-plugin');
 
+
 const extractCss = new ExtractTextPlugin({
 	filename: './css/[name].css'
 });

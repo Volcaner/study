@@ -2,5 +2,7 @@
 
 let aaa = 'aaa';
 console.log(aaa);
+console.log(aaa);
+console.log(aaa);
 
 // alert('sss');
