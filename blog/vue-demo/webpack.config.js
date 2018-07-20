@@ -14,6 +14,21 @@ const UglifyjsPlugin = require('uglifyjs-webpack-plugin');
 const extractCss = new ExtractTextPlugin({
 	filename: './css/[name].css'
 });
+const htmlPlugin = new HtmlWebpackPlugin({
+	title: 'My Test',
+	path: path.resolve(ROOT_PATH, './dist/'),
+	// publicPath: './',
+	filename: './html/index.html',
+	template: path.resolve(ROOT_PATH, './src/template/template.html'),
+	chunks: ['index', 'manifest'],
+	inject: 'body',
+	// minify: HtmlMinifier.minify,
+	meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'},
+	// favicon: path.resolve(ROOT_PATH, './src/image/logo.ico')
+});
+const uglifyjsPlugin = new UglifyjsPlugin({
+	sourceMap: true
+});
 
 const config = {
 	output: {
@@ -61,27 +76,10 @@ const config = {
 		]
 	},
 	plugins: [
-		/**
-			生成对应模块的 html，并引入相应 js文件
-		**/
-		new HtmlWebpackPlugin({
-			title: 'My Test',
-			path: path.resolve(ROOT_PATH, './dist/'),
-			// publicPath: './',
-			filename: './html/index.html',
-			template: path.resolve(ROOT_PATH, './src/template/template.html'),
-			chunks: ['index', 'manifest'],
-			inject: 'body',
-			// minify: HtmlMinifier.minify,
-			meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'},
-			// favicon: path.resolve(ROOT_PATH, './src/image/logo.ico')
-		}),
-
+		htmlPlugin,  // 生成对应模块的 html，并引入相应 js文件
 		extractCss,
 		HotModuleReplacementPlugin,  // 开启全局的模块热替换
-		new UglifyjsPlugin({
-			sourceMap: true
-		})
+		uglifyjsPlugin
 	],
 	devServer: {
 		contentBase: path.resolve(ROOT_PATH, './dist/'),

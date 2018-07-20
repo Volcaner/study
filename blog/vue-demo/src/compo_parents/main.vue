@@ -1,6 +1,7 @@
 <template>
     <div id="main">
         {{message}}
+        {{message}}
         <input type="button" @click='dialog' value='click'>
     </div>
 </template>
