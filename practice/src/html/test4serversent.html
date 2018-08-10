@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <!-- <meta http-equiv="refresh" content="5">  每5s刷新一次页面 -->
+        <title>Server-Sent 单项消息传递</title>
+    </head>
+    <body>
+        <div id="app">
+            <p class="test"></p>
+            <br />
+
+            <input type="email" name="" value="" autocomplete="on"><br />
+            <input type="url" name="" value=""><br />
+            <input type="number" name="" value="0" step="10" min="-100" max="100"><br />
+            <input type="range" name="" value="0" step="10" min="-100" max="100"><br />
+            <input type="date" name="" value=""><br />
+            <input type="search" name="" value=""><br />
+            <input type="color" name="" value="" autocomplete="on" autofocus><br />
+            <!-- document.querySelector("input[type=color]").value -->
+
+            <input type="text" name="name" value="" list="name1_list"><br />
+            <datalist id="name1_list">
+                <option label="W3School" value="fsdafdsafds">fsdafdsafds</option>
+                <option value="vdafdsa">vdafdsa</option>
+                <option value="fsdafdfdsafdssafds">fsdafdfdsafdssafds</option>
+                <option value="gfdzvcdz">gfdzvcdz</option>
+                <option value="ewqfads">ewqfads</option>
+                <option value="fsdafdsa">fsdafdsa</option>
+            </datalist>
+
+            <br />
+
+            <form class="" action="./../../php/demo_form.php" method="post">
+                userName: <input type="text" name="username" value=""><br />
+                Encryption: <keygen name="security" challenge="string" keytype="RSA" keyparams="medium"><br />
+                <input type="submit" value="submit"><br />
+            </form>
+
+            <br />
+
+            <p>The <abbr title="People`s Republic of China">PRC</abbr> was founded in 1948.</p>
+            <!-- HTML5 不再支持 acronym <acronym>the <abbr title="People`s Republic of China">PRC</abbr> was founded in 1948.</acronym> -->
+
+            <br />
+
+            <progress></progress>
+
+            <progress value="10" max="100">10%</progress>
+
+        </div>
+    </body>
+</html>
+
+<script type="text/javascript" charset="utf-8" defer>
+    window.onload = function() {
+        console.log("aaa");
+
+        if(typeof(EventSource) !== "undefined") {
+            // Server-Sent:
+            var source = new EventSource("./../../php/serverSentDemo.php");
+            source.onmessage = function(event) {
+                console.log(event);
+                document.querySelector(".test").innerHTML = event.data;
+            };
+        }
+        else {
+            // do nothing
+        }
+    };
+</script>

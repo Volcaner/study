@@ -13,6 +13,9 @@ npm install babel-loader --save-dev
 
 npm run babel
   =>  Es6 转 Es5
-  
+
 npm run build
   =>  编译
+
+
+public.js      /algorithm/src/public/public.js

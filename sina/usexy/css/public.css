@@ -1,0 +1,72 @@
+@charset "utf-8";
+
+/*********重置样式**********/
+*{
+    margin: 0;  /* 清除内外边距 */
+    padding: 0;
+    box-sizing: border-box;  /* 统一 width */
+    -webkit-box-sizing: border-box;
+}
+html, body{
+    -webkit-overflow-scrolling: touch;  /* 解决IOS默认滑动很卡的情况 */
+    font-family: sans-serif, Arial, Tahoma, 'Microsoft YaHei', '宋体';
+    -ms-text-size-adjust: 100%; /* 解决 iPhone 横屏时默认会放大文字 */
+    -webkit-text-size-adjust: 100%;
+}
+textarea{
+    resize: none;  /* 取消改变大小 */
+}
+input, textarea, button, select{
+    -webkit-appearance: none;  /* 取消默认样式 */
+    outline: none;
+}
+input[type="radio"]{
+    -webkit-appearance: radio;
+}
+input[type="checkbox"]{
+    -webkit-appearance: checkbox;
+}
+select{
+    -webkit-appearance: menulist;
+}
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder{
+    color: #F0F0F0;
+}
+a{
+    text-decoration: none;
+    outline: none;
+}
+a:hover{
+    text-decoration: none;
+    outline: none;
+}
+
+
+/*********公共样式**********/
+.clearfix:after{
+    content: '';
+    clear: both;
+    display: block;
+    height: 0;
+    zoom: 1;
+}
+.hide{
+    display: none;
+}
+
+.txt_break{
+    /* word-break: break-all; */  /* 英文断词换行 */
+    word-wrap: break-word;  /* 英文整词换行 */
+    white-space: pre-wrap;
+}
+.txt_nowrap{
+    white-space: nowrap;
+}
+.txt_ellipsis{
+    display: -webkit-box;
+    /* -webkit-line-clamp: 2; */  /* 设置超出多少行后省略 */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

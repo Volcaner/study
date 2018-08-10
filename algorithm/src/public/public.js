@@ -332,6 +332,45 @@ var cookie = {
     }
 };
 
+// 判断浏览器是否支持 video 标签
+var checkVideo = function() {
+    if (!!document.createElement('video').canPlayType) {  // a!=null&&typeof(a)!=undefined&&a!=''
+        var vidTest = document.createElement("video");
+        oggTest = vidTest.canPlayType('video/ogg; codecs="theora, vorbis"');
+        if (!oggTest) {
+            h264Test = vidTest.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
+            if (!h264Test) {
+                // document.getElementById("checkVideoResult").innerHTML = "Sorry. No video support."
+				return "NoSupport";
+            }
+			else {
+                if (h264Test == "probably") {
+                    // document.getElementById("checkVideoResult").innerHTML = "Yes! Full support!";
+					return "FullSupport";
+                }
+				else {
+                    // document.getElementById("checkVideoResult").innerHTML = "Well. Some support.";
+					return "SomeSupport";
+                }
+            }
+        }
+		else {
+            if (oggTest == "probably") {
+                // document.getElementById("checkVideoResult").innerHTML = "Yes! Full support!";
+				return "FullSupport";
+            }
+			else {
+                // document.getElementById("checkVideoResult").innerHTML = "Well. Some support.";
+				return "SomeSupport";
+            }
+        }
+    }
+	else {
+        // document.getElementById("checkVideoResult").innerHTML = "Sorry. No video support."
+		return "NoSupport";
+    }
+};
+
 module.exports = {
     toArray,
     getHrefParam,

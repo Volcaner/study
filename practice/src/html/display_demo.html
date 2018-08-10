@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <!-- <meta name="viewport" content="width=device-width,user-scalable=no"> -->
+        <title></title>
+        <link rel="stylesheet" href="./../../lib/font/iconfont.css">
+        <style media="screen">
+            @keyframes rotateing{
+                0%{
+                    transform: rotate(0deg);
+                }
+                100%{
+                    transform: rotate(360deg);
+                }
+            }
+
+            .border_demo{
+                width: 100px;
+                height: 100px;
+                border-width: 100px;
+                /* border-top-width: 0;
+                border-bottom-width: 0;
+                border-left-width: 100px;
+                border-right-width: 100px; */
+                border-color: red;
+                border-image: url(./../image/th.jpg);
+                border-style: groove;
+
+                box-sizing: content-box;
+                box-shadow: 0 0 47px 11px blue inset;
+            }
+
+            ol{
+                list-style-position: inside;
+            }
+            li{
+                counter-increment: li 1;
+            }
+            li:before{
+                /* content: counter(li); */
+                content: "\e6a5";
+                border: 1px solid #aaa;
+                border-radius: 50% 50%;
+                line-height: 2em;
+                width: 2em;
+                display: inline-block;
+                *display: inline;
+                *zoom: 1;
+                text-align: center;
+                margin-left: -10px;
+                margin-right: 10px;
+                /* animation: rotateing 1s 1; */
+            }
+            li:hover:before{
+                animation: rotateing 1s 1;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="app" class="table1">
+            <div class="item1"></div>
+            <div class="item1"></div>
+            <div class="item1"></div>
+            <div class="item1"></div>
+            <div class="item1"></div>
+        </div>
+
+        <div class="border_demo"></div>
+
+
+        <ol>
+            <li class="icon iconfont">fvedavgdafdsafdasfdsa</li>
+            <li class="icon iconfont">fvedavgdafdsafdasfdsa</li>
+            <li class="icon iconfont">fvedavgdafdsafdasfdsa</li>
+            <li class="icon iconfont">fvedavgdafdsafdasfdsa</li>
+            <li class="icon iconfont">fvedavgdafdsafdasfdsa</li>
+        </ol>
+    </body>
+</html>
